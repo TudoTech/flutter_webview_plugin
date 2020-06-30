@@ -41,6 +41,8 @@ class WebviewScaffold extends StatefulWidget {
     this.geolocationEnabled,
     this.debuggingEnabled = false,
     this.ignoreSSLErrors = false,
+    this.isShowCutomErrorWidget=false
+
   }) : super(key: key);
 
   final PreferredSizeWidget appBar;
@@ -74,6 +76,7 @@ class WebviewScaffold extends StatefulWidget {
   final bool useWideViewPort;
   final bool debuggingEnabled;
   final bool ignoreSSLErrors;
+  final bool isShowCutomErrorWidget;
 
   @override
   _WebviewScaffoldState createState() => _WebviewScaffoldState();
@@ -192,8 +195,8 @@ class _WebviewScaffoldState extends State<WebviewScaffold> {
             }
           }
         },
-        child: widget.initialChild ??
-            const Center(child: const CircularProgressIndicator()),
+        child: !widget.isShowCutomErrorWidget? widget.initialChild ??
+            const Center(child: const CircularProgressIndicator()):new Container(child:Text('My new Error')),
       ),
     );
   }
